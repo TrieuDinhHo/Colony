@@ -253,8 +253,9 @@ class DataReader():
         return (image, label)
 
     def get_dataset_training(self, image_size=224, validation=True):
-        gcs_pattern = DATA_GC_URI_TRAIN[image_size] + "*.tfrecords"
-        filenames = tf.io.gfile.glob(gcs_pattern)
+        # gcs_pattern = DATA_GC_URI_TRAIN[image_size] + "*.tfrecords"
+        # filenames = tf.io.gfile.glob(gcs_pattern)
+        filenames = self.filenames
         if validation:
             filenames.remove(
                 DATA_GC_URI_TRAIN[image_size] + "record_4.tfrecords")
