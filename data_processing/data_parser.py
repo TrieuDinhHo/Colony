@@ -256,10 +256,11 @@ class DataReader():
         # gcs_pattern = DATA_GC_URI_TRAIN[image_size] + "*.tfrecords"
         # filenames = tf.io.gfile.glob(gcs_pattern)
         filenames = self.filenames
+        src_path = self.src_path 
         if validation:
             validation_fns = []
             for i in range(36): # 36 is 30% amount of entire data
-                valdir = DATA_GC_URI_TRAIN[image_size] + "record_{}.tfrecords".format(i)
+                valdir = src_path + "record_{}.tfrecords".format(i)
                 filenames.remove(valdir)
                 validation_fns.append(valdir)
             train_fns = filenames
