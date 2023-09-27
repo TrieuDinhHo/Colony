@@ -152,13 +152,11 @@ class TransUnet():
         history = self.model.fit(training_dataset, epochs=epochs, batch_size=batch_size, verbose=1,
                                  steps_per_epoch=steps_per_epoch, validation_data=validation_dataset, callbacks=[model_checkpoint_callback])
 
-        self.model.load_weights(checkpoint_filepath)
-
-        saved_model_path = save_path + "/model"
-        self.save_model(saved_model_path)
-
-        print(f"Model saved in {saved_model_path}")
-
+        self.model.save(save_path+'/my_model.h5')
+        print(f"Model saved in {save_path}")
+        # self.model.load_weights(checkpoint_filepath)
+        # saved_model_path = save_path + "/model"
+        # self.save_model(saved_model_path)
         if show_history:
             plt.figure()
             plt.plot(history.history["loss"], label="training loss")
